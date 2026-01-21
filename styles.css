@@ -1,136 +1,158 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+/* Font (clean + modern) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
+/* THEME */
 :root{
-  --almond: #EADDCA;
-  --ink: #121212;
-  --muted: rgba(18,18,18,0.65);
+  --almond: #EADDCA;           /* your requested background */
+  --ink: #161412;              /* near-black text */
+  --muted: rgba(22, 20, 18, .62);
+  --muted2: rgba(22, 20, 18, .40);
 
-  --accent: #8b1e2d;              /* crimson */
-  --accentSoft: rgba(139,30,45,0.12);
+  --crimson: #7A1E2B;          /* refined crimson */
+  --crimson2: #A12A3A;         /* slightly brighter accent */
+  --card: rgba(255,255,255,.35);
+  --stroke: rgba(122, 30, 43, .22);
 
-  --card: rgba(255,255,255,0.55);
-  --border: rgba(18,18,18,0.10);
-  --shadow: 0 22px 70px rgba(18,18,18,0.18);
-
-  --maxw: 1100px;
-  --r: 18px;
+  --shadow: 0 18px 45px rgba(22, 20, 18, 0.18);
 }
 
+/* RESET */
 *{ box-sizing: border-box; }
 html, body{ height:100%; }
-
 body{
   margin:0;
-  font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--ink);
+  background: var(--almond);
+  overflow-x: hidden;
+}
 
-  /* Almond base + subtle crimson glow */
+/* SUBTLE BACKGROUND DEPTH (ALMOND + CRIMSON, NOT BLACK) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: -20vh -20vw;
+  pointer-events: none;
+  z-index: -1;
+
+  /* Almond base + crimson glow */
   background:
-    radial-gradient(900px 520px at 18% 12%, rgba(139,30,45,0.16), transparent 60%),
-    radial-gradient(700px 420px at 78% 25%, rgba(139,30,45,0.08), transparent 62%),
-    linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.0)),
-    var(--almond);
+    radial-gradient(900px 520px at 12% 10%, rgba(122, 30, 43, .18) 0%, rgba(122, 30, 43, 0) 60%),
+    radial-gradient(700px 420px at 86% 22%, rgba(122, 30, 43, .12) 0%, rgba(122, 30, 43, 0) 55%),
+    radial-gradient(900px 620px at 50% 85%, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 70%);
+
+  filter: blur(0px);
 }
 
 /* NAV */
-.navbar{
-  max-width: var(--maxw);
+.nav{
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 26px 24px;
+  padding: 28px 22px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.logo a{
+.brand{
   text-decoration:none;
   color: var(--ink);
-  font-weight: 700;
-  letter-spacing:-0.02em;
-}
-
-.navLinks{
-  display:flex;
-  gap:16px;
-}
-
-.navLinks a{
-  text-decoration:none;
-  color: rgba(18,18,18,0.70);
   font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.links{
+  display:flex;
+  gap: 26px;
+  align-items:center;
+}
+
+.links a{
+  text-decoration:none;
+  color: rgba(22, 20, 18, .78);
+  font-weight: 500;
   font-size: 14px;
-  padding: 8px 12px;
-  border-radius: 12px;
-  transition: background 160ms ease, color 160ms ease;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-.navLinks a:hover{
-  background: var(--accentSoft);
+.links a:hover{
+  background: rgba(255,255,255,.35);
   color: var(--ink);
+  transform: translateY(-1px);
 }
 
-/* HOME HERO */
-.home{
-  min-height: calc(100vh - 90px);
+/* HERO */
+.hero{
+  min-height: calc(100vh - 92px);
   display:grid;
   place-items:center;
-  padding: 0 24px 40px;
+  padding: 34px 22px 70px;
 }
 
-.hero{
-  width: min(900px, 100%);
-  text-align:center;
-  padding: 86px 36px;
-  border-radius: 28px;
+.heroInner{
+  width: min(920px, 100%);
+  text-align: center;
 
-  background: rgba(255,255,255,0.45);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
+  /* “rubbery” entrance that DOES NOT DISAPPEAR */
+  animation: rubberIn 800ms cubic-bezier(.2,.85,.2,1) both;
+  /* both = keeps final state (prevents disappearing) */
 }
 
-.hero h1{
-  margin:0;
-  font-size: clamp(48px, 6vw, 86px);
-  letter-spacing: -0.06em;
-  font-weight: 850;
-  color: var(--ink);
+.heroName{
+  margin: 0;
+  font-size: clamp(44px, 6.6vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  font-weight: 800;
 }
 
-.hero h2{
-  margin-top: 14px;
-  font-size: clamp(16px, 2vw, 22px);
-  font-weight: 700;
+.heroRole{
+  margin: 14px 0 0;
+  font-size: clamp(16px, 2.0vw, 20px);
+  font-weight: 600;
+  color: var(--crimson);
   letter-spacing: -0.01em;
-  color: var(--accent);
 }
 
-.hero p{
-  margin-top: 10px;
-  color: var(--muted);
+.heroOrg{
+  margin: 10px 0 0;
   font-size: 15px;
+  color: var(--muted);
 }
 
-/* OPTIONAL: sections later */
-.section{
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 52px 24px;
+/* RUBBER ANIMATION (SAFE) */
+@keyframes rubberIn{
+  0%{
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    filter: blur(2px);
+  }
+  55%{
+    opacity: 1;
+    transform: translateY(0) scale(1.03);
+    filter: blur(0);
+  }
+  78%{
+    transform: translateY(0) scale(0.995);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-/* ---------- IMPORTANT FIX ----------
-   Disable reveal-hiding until we add the JS observer.
-   This prevents “text disappears after 1 second”. */
-.reveal, .revealCard{
-  opacity: 1 !important;
-  transform: none !important;
-}
-.inView{
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Responsive */
-@media (max-width: 600px){
-  .hero{ padding: 64px 22px; }
+/* MOBILE NAV WRAP */
+@media (max-width: 720px){
+  .nav{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .links{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }
