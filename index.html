@@ -1,186 +1,29 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Safwan Haque — Research Portfolio</title>
-  <meta name="description" content="Chemistry graduate student focused on small-molecule synthesis, cancer therapeutics, and computational workflows." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safwan Haque</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="brand">Safwan Haque</div>
-      <nav class="nav">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <button id="themeBtn" class="themeBtn" aria-label="Toggle theme">☾</button>
-      </nav>
-    </header>
 
-    <main class="layout">
-      <!-- LEFT: Profile card -->
-      <section class="card profile">
-        <div class="avatar" aria-hidden="true"></div>
+<header class="navbar">
+  <div class="logo">Safwan Haque</div>
+  <nav>
+    <a href="experience.html">Experience</a>
+    <a href="research.html">Research</a>
+    <a href="photography.html">Photography</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-        <h1 class="name">Safwan Haque</h1>
-        <p class="title">
-          Graduate Student in Chemistry • Small-molecule synthesis • Cancer therapeutics • Computational workflows
-        </p>
+<main class="home">
+  <h1>Safwan Haque</h1>
+  <h2>Graduate Student in Chemistry</h2>
+  <p>The University of Alabama in Huntsville</p>
+</main>
 
-        <div class="meta">
-          <a class="metaLink" href="https://github.com/safwanhaque" target="_blank" rel="noreferrer">GitHub</a>
-          <span class="dot">•</span>
-          <a class="metaLink" href="https://www.linkedin.com/in/safwan-haque-478773205/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <span class="dot">•</span>
-          <a class="metaLink" href="mailto:YOUR_EMAIL">Email</a>
-        </div>
-
-        <div class="chips">
-          <span class="chip">Research-first</span>
-          <span class="chip">Clean documentation</span>
-          <span class="chip">Reproducible workflows</span>
-        </div>
-
-        <div class="profileActions">
-          <a class="btn primary" href="#work">View Work</a>
-          <a class="btn" href="photography.html">Photography</a>
-        </div>
-
-        <div id="about" class="aboutBlock">
-          <h2 class="h2">About</h2>
-          <p class="about">
-            I’m in pursuit of making a tangible difference in cancer therapeutics. I’m currently a Chemistry M.S. student at
-            the University of Alabama in Huntsville (GPA: 4.00), building skills in synthesis and analytical characterization
-            while also applying computational tools to drug discovery questions.
-          </p>
-          <ul class="bullets">
-            <li><b>Focus:</b> targeted cancer therapy, medicinal chemistry thinking, translational R&amp;D</li>
-            <li><b>Strengths:</b> clear documentation, careful experimental work, practical tooling</li>
-            <li><b>Background:</b> Biology B.S. → Chemistry M.S. (bridge between biology + chemistry)</li>
-          </ul>
-        </div>
-
-        <div class="footerNote">
-          <span>Huntsville, Alabama</span><span class="dot">•</span><span>Open to internships</span>
-        </div>
-      </section>
-
-      <!-- RIGHT: Work -->
-      <section id="work" class="work card">
-        <div class="workHeader">
-          <div>
-            <h2>Work.</h2>
-            <p class="sub">
-              Featured research + teaching highlights (from LinkedIn), plus auto-loaded GitHub repos.
-            </p>
-          </div>
-
-          <div class="filters">
-            <input id="search" class="search" placeholder="Search GitHub repos…" autocomplete="off" />
-            <select id="sort" class="select">
-              <option value="featured">Sort: Featured first</option>
-              <option value="updated">Sort: Recently updated</option>
-              <option value="stars">Sort: Stars</option>
-              <option value="name">Sort: Name</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Featured cards (your real story) -->
-        <div class="grid" id="featuredGrid">
-          <article class="item featured">
-            <div class="itemTop">
-              <div class="badge">Teaching</div>
-              <div class="time">Aug 2025 – Present</div>
-            </div>
-            <h3>Graduate Teaching Assistant — Chemistry Labs (UAH)</h3>
-            <p>
-              Supervising undergraduate chemistry laboratory classes with an emphasis on safety, protocol adherence,
-              correct instrument use, and accurate documentation.
-            </p>
-            <div class="tags">
-              <span>Lab safety</span><span>Instruction</span><span>Documentation</span>
-            </div>
-          </article>
-
-          <article class="item featured">
-            <div class="itemTop">
-              <div class="badge">Wet lab</div>
-              <div class="time">Sep 2024 – Dec 2024</div>
-            </div>
-            <h3>Volunteer Research Assistant — Liver Cancer Signaling (Lawan Lab)</h3>
-            <p>
-              Supported mouse-model studies; performed Western blots comparing knockout vs wild-type samples; collected
-              tissue samples in compliance with IACUC protocols.
-            </p>
-            <div class="tags">
-              <span>Western blot</span><span>IACUC</span><span>Mouse models</span>
-            </div>
-          </article>
-
-          <article class="item featured">
-            <div class="itemTop">
-              <div class="badge">Computational</div>
-              <div class="time">Aug 2022 – Apr 2024</div>
-            </div>
-            <h3>Undergraduate Research Assistant — Computational Drug Discovery (Baudry Lab)</h3>
-            <p>
-              Evaluated targets via literature review, processed receptor structures in MOE for docking, and maintained
-              clear workflow records; developed intuition for small-molecule interactions with biological targets.
-            </p>
-            <div class="tags">
-              <span>MOE</span><span>PDB structures</span><span>Docking</span>
-            </div>
-          </article>
-
-          <article class="item featured">
-            <div class="itemTop">
-              <div class="badge">Education</div>
-              <div class="time">Aug 2025 – Apr 2027</div>
-            </div>
-            <h3>M.S. Chemistry — UAH (GPA: 4.00)</h3>
-            <p>
-              Synthesis and analytical characterization of small molecules for targeted cancer therapy; currently completing
-              literature review and lab training.
-            </p>
-            <div class="tags">
-              <span>NMR</span><span>HPLC</span><span>Characterization</span>
-            </div>
-          </article>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- GitHub repos -->
-        <h3 class="h3">GitHub repos</h3>
-        <div id="repoGrid" class="grid repos"></div>
-
-        <footer id="contact" class="contact">
-          <div class="contactLine">
-            Contact: <a href="mailto:safwanmahmud1999@gmail.com">YOUR_EMAIL</a>
-            <span class="dot">•</span>
-            <a href="https://www.linkedin.com/in/safwan-haque-478773205/" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-          <div class="smallMuted">This page auto-loads public repositories from GitHub.</div>
-        </footer>
-      </section>
-    </main>
-  </div>
-
-  <script>
-    window.__CONFIG__ = {
-      username: "safwanhaque",
-      hideForks: true,
-      // Optional: put your best repos here to force them to the top.
-      pinnedRepos: [
-        // "repo-name-1",
-        // "repo-name-2"
-      ]
-    };
-  </script>
-  <script src="app.js"></script>
 </body>
 </html>
