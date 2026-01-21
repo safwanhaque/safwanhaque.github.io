@@ -1,7 +1,9 @@
 /* Font (minimal + professional) */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 
-/* THEME */
+/* ===========================
+   THEME TOKENS
+   =========================== */
 :root{
   --bg0: #09090B;
   --bg1: #0E0D10;
@@ -22,7 +24,9 @@
   --cardShadowHover: 0 18px 54px rgba(0,0,0,.66);
 }
 
-/* RESET */
+/* ===========================
+   RESET / BASE
+   =========================== */
 *{ box-sizing: border-box; }
 html, body{ height:100%; }
 html{ background: var(--bg0); }
@@ -55,6 +59,7 @@ body{
   transform: translateY(-140%);
   transition: transform 160ms ease;
   box-shadow: var(--shadow2);
+  z-index: 50;
 }
 .skipLink:focus{ transform: translateY(0); outline: none; }
 
@@ -64,7 +69,9 @@ body{
   outline-offset: 3px;
 }
 
-/* NAV */
+/* ===========================
+   NAV
+   =========================== */
 .nav{
   max-width: 1120px;
   margin: 0 auto;
@@ -128,7 +135,9 @@ body{
   transform: translateY(0);
 }
 
-/* HERO (homepage) */
+/* ===========================
+   HERO (homepage)
+   =========================== */
 .hero{
   min-height: calc(100vh - 92px);
   display:grid;
@@ -179,7 +188,9 @@ body{
   color: rgba(255,255,255,.62);
 }
 
-/* SOCIALS (homepage) */
+/* ===========================
+   SOCIALS (homepage)
+   =========================== */
 .socialRow{
   margin-top: 22px;
   display:flex;
@@ -228,7 +239,9 @@ body{
 
 .socialText{ color: rgba(255,255,255,.88); }
 
-/* PAGES */
+/* ===========================
+   GENERIC PAGE LAYOUT
+   =========================== */
 .page{
   min-height: calc(100vh - 92px);
   padding: 26px 22px 70px;
@@ -252,7 +265,9 @@ body{
   color: rgba(255,255,255,.92);
 }
 
-/* WORK: CARD LAYOUT */
+/* ===========================
+   WORK: CARD LAYOUT
+   =========================== */
 .workWrap{
   width: min(980px, 100%);
   display: grid;
@@ -325,7 +340,9 @@ body{
   outline-offset: 3px;
 }
 
-/* RUBBER ANIMATION (homepage) */
+/* ===========================
+   ANIMATION
+   =========================== */
 @keyframes rubberIn{
   0%{ opacity: 0; transform: translateY(10px) scale(0.98); filter: blur(2px); }
   55%{ opacity: 1; transform: translateY(0) scale(1.03); filter: blur(0); }
@@ -333,14 +350,13 @@ body{
   100%{ opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
-/* ========== PHOTOGRAPHY THEME (NO CRIMSON) ========== */
-.photoTheme{
+/* ===========================
+   PHOTOGRAPHY THEME (NO CRIMSON)
+   - Applies when <body class="photoTheme">
+   =========================== */
+body.photoTheme{
   --focus: rgba(255,255,255,.70);
-}
 
-.photoTheme body{ background: #000; } /* safety for some browsers */
-
-.photoTheme{
   /* Quiet black + subtle left lamp glow (no crimson) */
   background:
     radial-gradient(1100px 820px at -12% 42%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 62%),
@@ -348,49 +364,44 @@ body{
     linear-gradient(180deg, #070709 0%, #050507 50%, #030305 100%);
 }
 
-.photoTheme .links a::after{
+/* Tweak nav underline/glow to white on photography pages */
+body.photoTheme .links a::after{
   background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.70), rgba(255,255,255,0));
 }
 
-.photoTheme .links a:hover{
+body.photoTheme .links a:hover{
   border-color: rgba(255,255,255,.16);
   background: rgba(255,255,255,.03);
 }
 
-.photoPage{
-  max-width: 1120px;
+/* Photography page: span full width and allow children to stretch */
+body.photoTheme .photoPage{
   width: 100%;
+  max-width: none;
+  justify-items: stretch; /* overrides .page { justify-items:center } */
 }
 
-.photoHead{
-  width: min(1120px, 100%);
-}
+/* Centered header */
+.photoHeadCenter{ text-align: center; }
 
-.photoTitle{
-  letter-spacing: 0.10em;
-}
-
-.photoSub{
-  margin: 10px 0 0;
-  font-size: 12.5px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.52);
-}
-
-/* Album landing grid */
-.albumGrid{
-  width: min(1120px, 100%);
+/* Album landing grid: full width with ~0.5" side padding */
+body.photoTheme .albumGrid{
+  width: 100%;
+  justify-self: stretch;
+  padding-left: clamp(18px, 4.5vw, 48px);
+  padding-right: clamp(18px, 4.5vw, 48px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 1fr;
   gap: 16px;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
-/* Clickable album card */
-.albumCard{
+/* Clickable album card: cinematic banner */
+body.photoTheme .albumCard{
   position: relative;
   display: block;
+  width: 100%;
+  aspect-ratio: 21 / 9;
   border-radius: 22px;
   overflow: hidden;
   text-decoration: none;
@@ -404,32 +415,31 @@ body{
 
   transform: translateY(0);
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-  min-height: 240px;
 }
 
-.albumImg{
+/* Album cover image: fills banner, maintains image aspect ratio (no stretching). Crops if needed. */
+body.photoTheme .albumImg{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;         /* preserves aspect ratio */
+  object-position: center;
   transform: scale(1.02);
   transition: transform 420ms cubic-bezier(.2,.8,.2,1), filter 220ms ease;
   filter: saturate(.98) contrast(1.02) brightness(.92);
 }
 
-.albumOverlay{
+body.photoTheme .albumOverlay{
   position: absolute;
   inset: 0;
   display: grid;
   align-content: end;
   padding: 16px;
-
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.70) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.70) 100%);
 }
 
-.albumCaption{
+body.photoTheme .albumCaption{
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -438,41 +448,42 @@ body{
   text-shadow: 0 10px 28px rgba(0,0,0,.70);
 }
 
-.albumCard:hover{
+body.photoTheme .albumCard:hover{
   transform: translateY(-2px);
   border-color: rgba(255,255,255,.20);
   box-shadow:
     0 22px 64px rgba(0,0,0,.70),
     0 0 0 1px rgba(255,255,255,.10) inset;
 }
-.albumCard:hover .albumImg{
+body.photoTheme .albumCard:hover .albumImg{
   transform: scale(1.08);
   filter: saturate(1.02) contrast(1.05) brightness(.96);
 }
 
-.albumCard:focus-visible{
+/* Keyboard focus */
+body.photoTheme .albumCard:focus-visible{
   outline: 3px solid rgba(255,255,255,.72);
   outline-offset: 4px;
-}
-.albumCard:focus-visible{
   transform: translateY(-2px);
   border-color: rgba(255,255,255,.24);
   box-shadow:
     0 22px 64px rgba(0,0,0,.70),
     0 0 0 1px rgba(255,255,255,.12) inset;
 }
-.albumCard:focus-visible .albumImg{
-  transform: scale(1.08);
-}
+body.photoTheme .albumCard:focus-visible .albumImg{ transform: scale(1.08); }
 
-/* Album page top */
-.albumTop{
+/* Album pages */
+body.photoTheme .albumTop{
+  width: 100%;
+  max-width: none;
+  padding-left: clamp(18px, 4.5vw, 48px);
+  padding-right: clamp(18px, 4.5vw, 48px);
   display: grid;
   gap: 10px;
   align-items: start;
 }
 
-.albumBack{
+body.photoTheme .albumBack{
   width: fit-content;
   color: rgba(255,255,255,.72);
   text-decoration: none;
@@ -485,23 +496,29 @@ body{
   font-size: 12px;
   transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
 }
-.albumBack:hover{
+body.photoTheme .albumBack:hover{
   color: rgba(255,255,255,.90);
   background: rgba(255,255,255,.03);
   border-color: rgba(255,255,255,.16);
   transform: translateY(-1px);
 }
 
-/* Photo grid */
-.photoGrid{
-  width: min(1120px, 100%);
+/* Photo grid: maintains each photo's natural aspect ratio (no forced cropping).
+   Use <img> only; grid auto-rows by content height. */
+body.photoTheme .photoGrid{
+  width: 100%;
+  max-width: none;
+  justify-self: stretch;
+  padding-left: clamp(18px, 4.5vw, 48px);
+  padding-right: clamp(18px, 4.5vw, 48px);
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 12px;
   margin-top: 10px;
 }
 
-.photoTile{
+body.photoTheme .photoTile{
   margin: 0;
   border-radius: 18px;
   overflow: hidden;
@@ -510,16 +527,18 @@ body{
   box-shadow: 0 16px 44px rgba(0,0,0,.62);
 }
 
-.photoTile img{
+body.photoTheme .photoTile img{
   display: block;
   width: 100%;
-  height: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;         /* critical: keeps uploaded aspect ratio */
+  object-fit: contain;  /* no cropping; preserves aspect ratio */
+  background: rgba(0,0,0,.35);
   filter: saturate(.98) contrast(1.02) brightness(.94);
 }
 
-/* MOBILE */
+/* ===========================
+   MOBILE
+   =========================== */
 @media (max-width: 720px){
   .nav{
     flex-direction: column;
@@ -531,41 +550,17 @@ body{
   }
   .hero{ padding-top: 24px; }
   .card{ padding: 16px 14px 14px; border-radius: 20px; }
-  .albumCard{ min-height: 220px; border-radius: 20px; }
-  .photoTile{ border-radius: 16px; }
+
+  body.photoTheme .albumCard{ border-radius: 20px; aspect-ratio: 16 / 9; }
+  body.photoTheme .photoTile{ border-radius: 16px; }
 }
 
-/* Reduced motion */
+/* ===========================
+   REDUCED MOTION
+   =========================== */
 @media (prefers-reduced-motion: reduce){
   .heroInner{ animation: none; }
   .links a, .socialBtn, .heroName, .card, .albumCard, .albumImg, .albumBack{ transition: none; }
   .card:hover, .card:focus-within, .albumCard:hover{ transform: none; }
   .albumCard:hover .albumImg, .albumCard:focus-visible .albumImg{ transform: scale(1.02); }
-}
-/* Make the photography page use a wider container */
-.photoPage{
-  max-width: none;          /* remove the 1120px cap for this page */
-  width: 100%;
-}
-
-/* Centered header */
-.photoHeadCenter{
-  text-align: center;
-}
-
-/* Wider album grid with ~0.5" side padding */
-.albumGrid{
-  width: 100%;
-  padding-left: clamp(18px, 4.5vw, 48px);
-  padding-right: clamp(18px, 4.5vw, 48px);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 14px;
-}
-
-/* Make the album card fill the available width */
-.albumCard{
-  min-height: auto;
-  aspect-ratio: 21 / 9; /* cinematic banner; adjust if you prefer */
 }
