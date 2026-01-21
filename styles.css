@@ -542,3 +542,30 @@ body{
   .card:hover, .card:focus-within, .albumCard:hover{ transform: none; }
   .albumCard:hover .albumImg, .albumCard:focus-visible .albumImg{ transform: scale(1.02); }
 }
+/* Make the photography page use a wider container */
+.photoPage{
+  max-width: none;          /* remove the 1120px cap for this page */
+  width: 100%;
+}
+
+/* Centered header */
+.photoHeadCenter{
+  text-align: center;
+}
+
+/* Wider album grid with ~0.5" side padding */
+.albumGrid{
+  width: 100%;
+  padding-left: clamp(18px, 4.5vw, 48px);
+  padding-right: clamp(18px, 4.5vw, 48px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+/* Make the album card fill the available width */
+.albumCard{
+  min-height: auto;
+  aspect-ratio: 21 / 9; /* cinematic banner; adjust if you prefer */
+}
