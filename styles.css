@@ -26,13 +26,14 @@
 *{ box-sizing: border-box; }
 html, body{ height:100%; }
 html{ background: var(--bg0); }
+
 body{
   margin:0;
   font-family: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--text);
   overflow-x: hidden;
 
-  /* ONE cohesive background used on every page (no fixed overlay layer) */
+  /* Default site background (crimson + black) */
   background:
     radial-gradient(1200px 720px at 14% 10%, rgba(178,31,55,.22) 0%, rgba(178,31,55,0) 62%),
     radial-gradient(1100px 700px at 88% 24%, rgba(122,30,43,.16) 0%, rgba(122,30,43,0) 64%),
@@ -332,17 +333,212 @@ body{
   100%{ opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
+/* ========== PHOTOGRAPHY THEME (NO CRIMSON) ========== */
+.photoTheme{
+  --focus: rgba(255,255,255,.70);
+}
+
+.photoTheme body{ background: #000; } /* safety for some browsers */
+
+.photoTheme{
+  /* Quiet black + subtle left lamp glow (no crimson) */
+  background:
+    radial-gradient(1100px 820px at -12% 42%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 62%),
+    radial-gradient(900px 620px at 28% 18%, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, #070709 0%, #050507 50%, #030305 100%);
+}
+
+.photoTheme .links a::after{
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.70), rgba(255,255,255,0));
+}
+
+.photoTheme .links a:hover{
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.03);
+}
+
+.photoPage{
+  max-width: 1120px;
+  width: 100%;
+}
+
+.photoHead{
+  width: min(1120px, 100%);
+}
+
+.photoTitle{
+  letter-spacing: 0.10em;
+}
+
+.photoSub{
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.52);
+}
+
+/* Album landing grid */
+.albumGrid{
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+/* Clickable album card */
+.albumCard{
+  position: relative;
+  display: block;
+  border-radius: 22px;
+  overflow: hidden;
+  text-decoration: none;
+  color: rgba(255,255,255,.92);
+
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.62),
+    0 0 0 1px rgba(255,255,255,.06) inset;
+
+  transform: translateY(0);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  min-height: 240px;
+}
+
+.albumImg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 420ms cubic-bezier(.2,.8,.2,1), filter 220ms ease;
+  filter: saturate(.98) contrast(1.02) brightness(.92);
+}
+
+.albumOverlay{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: end;
+  padding: 16px;
+
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.70) 100%);
+}
+
+.albumCaption{
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 10px 28px rgba(0,0,0,.70);
+}
+
+.albumCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.20);
+  box-shadow:
+    0 22px 64px rgba(0,0,0,.70),
+    0 0 0 1px rgba(255,255,255,.10) inset;
+}
+.albumCard:hover .albumImg{
+  transform: scale(1.08);
+  filter: saturate(1.02) contrast(1.05) brightness(.96);
+}
+
+.albumCard:focus-visible{
+  outline: 3px solid rgba(255,255,255,.72);
+  outline-offset: 4px;
+}
+.albumCard:focus-visible{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.24);
+  box-shadow:
+    0 22px 64px rgba(0,0,0,.70),
+    0 0 0 1px rgba(255,255,255,.12) inset;
+}
+.albumCard:focus-visible .albumImg{
+  transform: scale(1.08);
+}
+
+/* Album page top */
+.albumTop{
+  display: grid;
+  gap: 10px;
+  align-items: start;
+}
+
+.albumBack{
+  width: fit-content;
+  color: rgba(255,255,255,.72);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.albumBack:hover{
+  color: rgba(255,255,255,.90);
+  background: rgba(255,255,255,.03);
+  border-color: rgba(255,255,255,.16);
+  transform: translateY(-1px);
+}
+
+/* Photo grid */
+.photoGrid{
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.photoTile{
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 16px 44px rgba(0,0,0,.62);
+}
+
+.photoTile img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: saturate(.98) contrast(1.02) brightness(.94);
+}
+
 /* MOBILE */
 @media (max-width: 720px){
-  .nav{ flex-direction: column; align-items: flex-start; }
-  .links{ flex-wrap: wrap; gap: 8px; }
+  .nav{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .links{
+    flex-wrap: wrap;
+    gap: 8px;
+  }
   .hero{ padding-top: 24px; }
   .card{ padding: 16px 14px 14px; border-radius: 20px; }
+  .albumCard{ min-height: 220px; border-radius: 20px; }
+  .photoTile{ border-radius: 16px; }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   .heroInner{ animation: none; }
-  .links a, .socialBtn, .heroName, .card{ transition: none; }
-  .card:hover, .card:focus-within{ transform: none; }
+  .links a, .socialBtn, .heroName, .card, .albumCard, .albumImg, .albumBack{ transition: none; }
+  .card:hover, .card:focus-within, .albumCard:hover{ transform: none; }
+  .albumCard:hover .albumImg, .albumCard:focus-visible .albumImg{ transform: scale(1.02); }
 }
