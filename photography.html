@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Photography • Safwan Haque</title>
 
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 
-<body>
+<body class="photoTheme">
   <a class="skipLink" href="#main">Skip to content</a>
 
   <header class="nav">
@@ -21,10 +21,19 @@
     </nav>
   </header>
 
-  <main id="main" class="page" aria-label="Photography page">
-    <section class="panel" aria-labelledby="photoTitle">
-      <h1 id="photoTitle" class="panelTitle">Working on it!</h1>
-      <p class="panelSub">A gallery experience is coming soon.</p>
+  <main id="main" class="page photoPage" aria-label="Photography gallery">
+    <header class="pageHead photoHead">
+      <h1 class="pageTitle photoTitle">Photography</h1>
+      <p class="photoSub">Albums</p>
+    </header>
+
+    <section class="albumGrid" aria-label="Album cards">
+      <a class="albumCard" href="california-2025.html" aria-label="Open album: California 2025">
+        <img class="albumImg" src="photos/california-2025/cover.jpg" alt="Album cover: California 2025" loading="lazy" decoding="async">
+        <span class="albumOverlay" aria-hidden="true">
+          <span class="albumCaption">California 2025</span>
+        </span>
+      </a>
     </section>
   </main>
 </body>
