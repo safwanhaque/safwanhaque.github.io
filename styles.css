@@ -3,191 +3,7 @@
 /* Font (minimal + professional) */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 
-/* ===========================
-  THEME TOKENS
-  =========================== */
-:root{
---bg0: #09090B;
---bg1: #0E0D10;
-
---text: rgba(255,255,255,.90);
---muted: rgba(255,255,255,.66);
---muted2: rgba(255,255,255,.46);
-
---crimson: #B21F37;
---crimson2: #7A1E2B;
-
---shadow2: 0 10px 28px rgba(0,0,0,.50);
---focus: rgba(178, 31, 55, .55);
-
---cardStroke: rgba(255,255,255,.10);
---cardStrokeHover: rgba(255,255,255,.16);
---cardShadow: 0 14px 42px rgba(0,0,0,.58);
---cardShadowHover: 0 18px 54px rgba(0,0,0,.66);
-}
-
-/* ===========================
-  RESET / BASE
-  =========================== */
-*{ box-sizing: border-box; }
-html, body{ height:100%; }
-html{ background: var(--bg0); }
-
-body{
-margin:0;
-font-family: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-color: var(--text);
-overflow-x: hidden;
-
-/* Default site background (crimson + black) */
-background:
-radial-gradient(1200px 720px at 14% 10%, rgba(178,31,55,.22) 0%, rgba(178,31,55,0) 62%),
-radial-gradient(1100px 700px at 88% 24%, rgba(122,30,43,.16) 0%, rgba(122,30,43,0) 64%),
-radial-gradient(900px 600px at 52% 92%, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 62%),
-linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 64%, #07070A 100%);
-}
-
-/* Skip link */
-.skipLink{
-position: absolute;
-left: 12px;
-top: 12px;
-padding: 10px 12px;
-border-radius: 12px;
-background: rgba(18,16,21,.92);
-border: 1px solid rgba(255,255,255,.14);
-color: var(--text);
-text-decoration: none;
-transform: translateY(-140%);
-transition: transform 160ms ease;
-box-shadow: var(--shadow2);
-z-index: 50;
-}
-.skipLink:focus{ transform: translateY(0); outline: none; }
-
-/* Focus styles */
-:where(a, button, [tabindex]):focus-visible{
-outline: 3px solid var(--focus);
-outline-offset: 3px;
-}
-
-/* ===========================
-  NAV
-  =========================== */
-.nav{
-max-width: 1120px;
-margin: 0 auto;
-padding: 26px 22px;
-display:flex;
-align-items:center;
-justify-content: space-between;
-gap: 16px;
-}
-
-.brand{
-text-decoration:none;
-color: var(--text);
-font-weight: 600;
-letter-spacing: 0.02em;
-padding: 8px 10px;
-border-radius: 12px;
-}
-.brand:hover{ background: rgba(255,255,255,.04); }
-
-.links{
-display:flex;
-gap: 18px;
-align-items:center;
-}
-
-.links a{
-position: relative;
-text-decoration:none;
-color: var(--muted);
-font-weight: 500;
-font-size: 14px;
-letter-spacing: 0.06em;
-padding: 10px 12px;
-border-radius: 12px;
-border: 1px solid transparent;
-transition: background 160ms ease, color 160ms ease, transform 160ms ease, border-color 160ms ease;
-}
-
-.links a:hover{
-color: var(--text);
-background: rgba(255,255,255,.04);
-border-color: rgba(255,255,255,.10);
-transform: translateY(-1px);
-}
-
-.links a::after{
-content:"";
-position:absolute;
-left: 12px;
-right: 12px;
-bottom: 6px;
-height: 1px;
-background: linear-gradient(90deg, rgba(178,31,55,0), rgba(178,31,55,.80), rgba(178,31,55,0));
-opacity: 0;
-transform: translateY(3px);
-transition: opacity 160ms ease, transform 160ms ease;
-}
-.links a:hover::after{
-opacity: 1;
-transform: translateY(0);
-}
-
-/* ===========================
-  HERO (homepage)
-  =========================== */
-.hero{
-min-height: calc(100vh - 92px);
-display:grid;
-place-items:center;
-padding: 34px 22px 70px;
-}
-
-.heroInner{
-width: min(920px, 100%);
-text-align: center;
-animation: rubberIn 900ms cubic-bezier(.2,.85,.2,1) both;
-}
-
-.heroName,
-.heroRole,
-.heroOrg{
-letter-spacing: 0.06em;
-}
-
-.heroName{
-margin: 0;
-font-size: clamp(44px, 6.4vw, 76px);
-line-height: 1.03;
-font-weight: 600;
-background: linear-gradient(92deg, rgba(255,255,255,.94), rgba(255,255,255,.72), rgba(178,31,55,.58));
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
-filter: drop-shadow(0 12px 40px rgba(178,31,55,.16));
-transition: filter 180ms ease, transform 180ms ease;
-}
-.heroInner:hover .heroName{
-filter: drop-shadow(0 14px 46px rgba(178,31,55,.22));
-transform: translateY(-1px);
-}
-
-.heroRole{
-margin: 14px 0 0;
-font-size: clamp(16px, 2.0vw, 20px);
-font-weight: 500;
-color: rgba(255,255,255,.78);
-}
-
-.heroOrg{
-margin: 10px 0 0;
-font-size: 14px;
-font-weight: 500;
-color: rgba(255,255,255,.62);
+@@ -189,56 +191,15 @@ body{
 }
 
 /* ===========================
@@ -250,17 +66,7 @@ color: rgba(255,255,255,.62);
 /* ===========================
   GENERIC PAGE LAYOUT
   =========================== */
-.page{
-min-height: calc(100vh - 92px);
-padding: 26px 22px 70px;
-display: grid;
-justify-items: center;
-align-content: start;
-gap: 18px;
-}
-
-.pageHead{
-width: min(980px, 100%);
+@@ -256,98 +217,19 @@ body{
 padding-top: 6px;
 }
 
@@ -365,9 +171,7 @@ letter-spacing: 0.06em;
 }
 
 /* ===========================
-  PHOTOGRAPHY THEME (NO CRIMSON)
-  - Applies when <body class="photoTheme">
-  =========================== */
+@@ -357,34 +239,49 @@ body{
 body.photoTheme{
 --focus: rgba(255,255,255,.70);
 
@@ -424,11 +228,7 @@ body.photoTheme .pageHead{
 body.photoTheme .albumGrid{
 width: 100%;
 justify-self: stretch;
-padding-left: clamp(18px, 4.5vw, 48px);
-padding-right: clamp(18px, 4.5vw, 48px);
-display: grid;
-grid-template-columns: 1fr;
-gap: 16px;
+@@ -396,12 +293,12 @@ body.photoTheme .albumGrid{
 margin-top: 14px;
 }
 
@@ -443,15 +243,7 @@ width: 100%;
 border-radius: 22px;
 overflow: hidden;
 text-decoration: none;
-color: rgba(255,255,255,.92);
-
-background: rgba(255,255,255,.02);
-border: 1px solid rgba(255,255,255,.12);
-box-shadow:
-0 18px 50px rgba(0,0,0,.62),
-0 0 0 1px rgba(255,255,255,.06) inset;
-
-transform: translateY(0);
+@@ -417,15 +314,14 @@ body.photoTheme .albumCard{
 transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
@@ -469,30 +261,7 @@ object-position: center;
 transition: transform 420ms cubic-bezier(.2,.8,.2,1), filter 220ms ease;
 filter: saturate(.98) contrast(1.02) brightness(.92);
 }
-
-body.photoTheme .albumOverlay{
-position: absolute;
-inset: 0;
-display: grid;
-align-content: end;
-padding: 16px;
-background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.70) 100%);
-}
-
-body.photoTheme .albumCaption{
-font-size: 15px;
-font-weight: 500;
-letter-spacing: 0.12em;
-text-transform: uppercase;
-color: rgba(255,255,255,.92);
-text-shadow: 0 10px 28px rgba(0,0,0,.70);
-}
-
-body.photoTheme .albumCard:hover{
-transform: translateY(-2px);
-border-color: rgba(255,255,255,.20);
-box-shadow:
-0 22px 64px rgba(0,0,0,.70),
+@@ -456,11 +352,10 @@ body.photoTheme .albumCard:hover{
 0 0 0 1px rgba(255,255,255,.10) inset;
 }
 body.photoTheme .albumCard:hover .albumImg{
@@ -505,9 +274,7 @@ filter: saturate(1.02) contrast(1.05) brightness(.96);
 body.photoTheme .albumCard:focus-visible{
 outline: 3px solid rgba(255,255,255,.72);
 outline-offset: 4px;
-transform: translateY(-2px);
-border-color: rgba(255,255,255,.24);
-box-shadow:
+@@ -470,9 +365,11 @@ body.photoTheme .albumCard:focus-visible{
 0 22px 64px rgba(0,0,0,.70),
 0 0 0 1px rgba(255,255,255,.12) inset;
 }
@@ -521,30 +288,7 @@ body.photoTheme .albumCard:focus-visible .albumImg{ transform: scale(1.10); }
 body.photoTheme .albumTop{
 width: 100%;
 max-width: none;
-padding-left: clamp(18px, 4.5vw, 48px);
-padding-right: clamp(18px, 4.5vw, 48px);
-display: grid;
-gap: 10px;
-align-items: start;
-}
-
-body.photoTheme .albumBack{
-width: fit-content;
-color: rgba(255,255,255,.72);
-text-decoration: none;
-padding: 8px 10px;
-border-radius: 12px;
-border: 1px solid rgba(255,255,255,.10);
-background: rgba(255,255,255,.02);
-letter-spacing: 0.10em;
-text-transform: uppercase;
-font-size: 12px;
-transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
-}
-body.photoTheme .albumBack:hover{
-color: rgba(255,255,255,.90);
-background: rgba(255,255,255,.03);
-border-color: rgba(255,255,255,.16);
+@@ -503,37 +400,64 @@ body.photoTheme .albumBack:hover{
 transform: translateY(-1px);
 }
 
@@ -627,14 +371,7 @@ body.photoTheme .photoCaption{
 }
 
 /* ===========================
-  MOBILE
-  =========================== */
-@media (max-width: 720px){
-.nav{
-flex-direction: column;
-align-items: flex-start;
-}
-.links{
+@@ -548,19 +472,31 @@ body.photoTheme .photoTile img{
 flex-wrap: wrap;
 gap: 8px;
 }
